@@ -7,7 +7,8 @@
     "ios": "react-native run-ios",
     "start": "react-native start",
     "test": "jest",
-    "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
+    "codegen": "apollo service:download --endpoint=https://frozen-river-77426.herokuapp.com/query && apollo client:codegen src/types/graphql.ts --includes='src/**/*.ts' --localSchemaFile=schema.json --outputFlat --target=typescript"
   },
   "dependencies": {
     "@apollo/react-hooks": "^4.0.0",
