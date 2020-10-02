@@ -4,11 +4,39 @@
 // This file was automatically generated and should not be edited.
 
 // ====================================================
+// GraphQL query operation: FeedQuery
+// ====================================================
+
+export interface FeedQuery_feed {
+  __typename: "FeedItem";
+  description: string;
+  duration: string;
+  image: string | null;
+  linkUrl: string;
+  title: string;
+  text: string;
+  pubDate: string;
+}
+
+export interface FeedQuery {
+  feed: FeedQuery_feed[];
+}
+
+export interface FeedQueryVariables {
+  feedUrl: string;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
 // GraphQL query operation: SearchQuery
 // ====================================================
 
 export interface SearchQuery_search {
-  __typename: 'Podcast';
+  __typename: "Podcast";
   artist: string;
   episodesCount: number;
   feedUrl: string;

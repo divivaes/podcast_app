@@ -7,7 +7,7 @@ import {theme} from '../../constants/theme';
 const SearchLoading = () => {
   return (
     <Box f={1} center h={300}>
-      <ActivityIndicator size="large" color={theme.color.blueLight} />
+      <ActivityIndicator size="large" color={theme.color.black} />
     </Box>
   );
 };
