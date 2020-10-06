@@ -14,7 +14,12 @@ const SearchList: React.FC<Props> = (props) => {
 
   return (
     <TouchableOpacity
-      onPress={() => navigation.navigate('PodcastDetail', {data: props.item})}>
+      onPress={() =>
+        navigation.navigate('PodcastDetail', {
+          screen: 'PodcastDetail',
+          params: {data: props.item},
+        })
+      }>
       <Box h={90} dir="row" align="center" px="sm">
         <Box h={70} w={70} bg="blueLight" radius={10} mr={10}>
           {props.item.thumbnail && (

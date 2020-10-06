@@ -1,4 +1,4 @@
-import {RouteProp, useRoute} from '@react-navigation/core';
+import {RouteProp, useNavigation, useRoute} from '@react-navigation/core';
 import React from 'react';
 import {Box, Text} from 'react-native-design-utility';
 import {
@@ -22,6 +22,7 @@ type NavigationParam = RouteProp<SearchStackRouteParamList, 'PodcastDetail'>;
 
 const PodcastDetailScreen = () => {
   const playerContext = usePlayerContext();
+  const navigation = useNavigation();
   const {data: podcastData} = useRoute<NavigationParam>().params ?? {};
 
   const {data, loading} = useQuery<FeedQuery, FeedQueryVariables>(feedQuery, {
@@ -77,7 +78,7 @@ const PodcastDetailScreen = () => {
                   <FeatherIcon
                     name="play"
                     size={30}
-                    color={theme.color.blueLight}
+                    color={theme.color.black}
                   />
                 </TouchableOpacity>
               </Box>
@@ -108,18 +109,26 @@ const PodcastDetailScreen = () => {
           </Box>
         )}
         renderItem={({item}) => (
-          <Box px="sm">
-            <Text size="xs" color="grey">
-              {getWeekDay(new Date(item.pubDate)).toUpperCase()}
-            </Text>
-            <Text bold>{item.title}</Text>
-            <Text size="sm" color="grey" numberOfLines={2}>
-              {item.description}
-            </Text>
-            <Text size="xs" color="grey">
-              {humanDuration(item.duration)}
-            </Text>
-          </Box>
+          <TouchableOpacity
+            onPress={() =>
+              navigation.navigate('EpisodeDetail', {
+                episode: item,
+                podcast: podcastData,
+              })
+            }>
+            <Box px="sm">
+              <Text size="xs" color="grey">
+                {getWeekDay(new Date(item.pubDate)).toUpperCase()}
+              </Text>
+              <Text bold>{item.title}</Text>
+              <Text size="sm" color="grey" numberOfLines={2}>
+                {item.summary}
+              </Text>
+              <Text size="xs" color="grey">
+                {humanDuration(item.duration)}
+              </Text>
+            </Box>
+          </TouchableOpacity>
         )}
         keyExtractor={(item) => item.linkUrl}></FlatList>
     </Box>
