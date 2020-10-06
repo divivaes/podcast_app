@@ -25,7 +25,9 @@ const SearchList: React.FC<Props> = (props) => {
           <Text bold numberOfLines={1}>
             {props.item.podcastName}
           </Text>
-          <Text size="xs">{props.item.artist}</Text>
+          <Text size="xs" numberOfLines={1}>
+            {props.item.artist}
+          </Text>
 
           <Text size="xs" color="greyLight">
             {props.item.episodesCount} episodes

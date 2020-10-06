@@ -52,6 +52,11 @@ const MiniPlayer = () => {
             </TouchableOpacity>
           )}
         </Box>
+        <Box>
+          <TouchableOpacity onPress={() => playerContext.seekTo()}>
+            <Icon size={30} name="rotate-cw" />
+          </TouchableOpacity>
+        </Box>
       </Box>
     </Box>
   );
