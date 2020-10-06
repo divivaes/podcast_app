@@ -17,11 +17,14 @@ import {theme} from '../../constants/theme';
 import {useQuery} from '@apollo/react-hooks';
 import {getWeekDay, humanDuration} from '../../lib/dateTimeHelper';
 import {usePlayerContext} from '../../contexts/PlayerContext';
+import {DatabaseContext} from '../../contexts/DatabaseContext';
+import {PodcastModel} from '../../models/PodcastModel';
 
 type NavigationParam = RouteProp<SearchStackRouteParamList, 'PodcastDetail'>;
 
 const PodcastDetailScreen = () => {
   const playerContext = usePlayerContext();
+  const databaseContext = React.useContext(DatabaseContext);
   const navigation = useNavigation();
   const {data: podcastData} = useRoute<NavigationParam>().params ?? {};
 
@@ -52,9 +55,22 @@ const PodcastDetailScreen = () => {
                 <Text size="xs" color="grey">
                   {podcastData.artist}
                 </Text>
-                <Text size="xs" color="blueLight">
-                  Subscribed
-                </Text>
+                <TouchableOpacity
+                  onPress={() =>
+                    databaseContext.subscribeToPodcast(
+                      new PodcastModel({
+                        episodesCount: podcastData.episodesCount,
+                        feedUrl: podcastData.feedUrl,
+                        thumbnail: podcastData.thumbnail,
+                        artist: podcastData.artist,
+                        name: podcastData.podcastName,
+                      }),
+                    )
+                  }>
+                  <Text size="xs" color="blueLight">
+                    Subscribed
+                  </Text>
+                </TouchableOpacity>
               </Box>
             </Box>
             <Box px="sm" mb="md" dir="row" align="center">

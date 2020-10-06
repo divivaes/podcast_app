@@ -28,25 +28,6 @@ const ListenNowStackNavigator = () => {
   );
 };
 
-const PodcastStack = createStackNavigator();
-
-const PodcastStackNavigator = () => {
-  return (
-    <PodcastStack.Navigator>
-      <PodcastStack.Screen
-        options={{headerTitle: ''}}
-        name="PodcastDetail"
-        component={PodcastDetailScreen}
-      />
-      <PodcastStack.Screen
-        options={{headerTitle: ''}}
-        name="EpisodeDetail"
-        component={EpisodeDetailScreen}
-      />
-    </PodcastStack.Navigator>
-  );
-};
-
 const SearchStack = createStackNavigator();
 
 const SearchStackNavigator = () => {
@@ -55,6 +36,7 @@ const SearchStackNavigator = () => {
       screenOptions={{
         headerTintColor: theme.color.blueLight,
         headerTitleStyle: {color: theme.color.black},
+        headerBackTitle: 'Back',
       }}>
       <SearchStack.Screen
         options={{title: 'Search'}}
@@ -62,9 +44,14 @@ const SearchStackNavigator = () => {
         component={SearchScreen}
       />
       <SearchStack.Screen
-        options={{headerTitle: '', headerBackTitle: 'Back'}}
+        options={{headerTitle: ''}}
         name="PodcastDetail"
-        component={PodcastStackNavigator}
+        component={PodcastDetailScreen}
+      />
+      <SearchStack.Screen
+        options={{headerTitle: ''}}
+        name="EpisodeDetail"
+        component={EpisodeDetailScreen}
       />
     </SearchStack.Navigator>
   );

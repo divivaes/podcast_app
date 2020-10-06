@@ -17,7 +17,7 @@ const SearchList: React.FC<Props> = (props) => {
       onPress={() =>
         navigation.navigate('PodcastDetail', {
           screen: 'PodcastDetail',
-          params: {data: props.item},
+          data: props.item,
         })
       }>
       <Box h={90} dir="row" align="center" px="sm">
